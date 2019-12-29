@@ -42,5 +42,20 @@ private:
 	Graphics gfx;
 	/********************************/
 	/*  User Variables              */
+
+	int dudeX = 400;
+	int dudeY = 300;
+
+	int foe0X = 300;
+	int foe0Y = 300;
+	bool foe0IsEaten = false;
+	int foe1X = 100;
+	int foe1Y = 500;
+	bool foe1IsEaten = false;
+	int foe2X = 600;
+	int foe2Y = 400;
+	bool foe2IsEaten = false;
+
+	
 	/********************************/
 };

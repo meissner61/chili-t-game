@@ -36,6 +36,12 @@ private:
 	void UpdateModel();
 	/********************************/
 	/*  User Functions              */
+
+	void DrawFace(int x, int y);
+	void DrawFoe(int x, int y);
+	int ClampScreenX(int x, int width);
+	int ClampScreenY(int y, int height);
+	bool IsColliding(int x0, int y0, int width0, int height0, int x1, int y1, int width1, int height1);
 	/********************************/
 private:
 	MainWindow& wnd;
@@ -43,8 +49,11 @@ private:
 	/********************************/
 	/*  User Variables              */
 
-	int dudeX = 400;
-	int dudeY = 300;
+	int dudeX = 300;
+	int dudeY = 400;
+	int dudeWidth = 20;
+	int dudeHeight = 20;
+	int dudeSpeed = 4;
 
 	int foe0X = 300;
 	int foe0Y = 300;
@@ -55,6 +64,8 @@ private:
 	int foe2X = 600;
 	int foe2Y = 400;
 	bool foe2IsEaten = false;
+	int foeWidth = 24;
+	int foeHeight = 24;
 
 	
 	/********************************/

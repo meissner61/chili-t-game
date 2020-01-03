@@ -42,6 +42,8 @@ private:
 	int ClampScreenX(int x, int width);
 	int ClampScreenY(int y, int height);
 	bool IsColliding(int x0, int y0, int width0, int height0, int x1, int y1, int width1, int height1);
+	void DrawGameOver(int x, int y);
+	void DrawTitle(int x, int y);
 	/********************************/
 private:
 	MainWindow& wnd;
@@ -66,6 +68,8 @@ private:
 	bool foe2IsEaten = false;
 	int foeWidth = 24;
 	int foeHeight = 24;
+
+	bool isStarted = false;
 
 	
 	/********************************/

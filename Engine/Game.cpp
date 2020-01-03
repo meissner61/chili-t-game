@@ -51,6 +51,68 @@ void Game::UpdateModel()
 {
 	if (isStarted)
 	{
+		foe0X += foe0vx;
+		foe0Y += foe0vy;
+		foe1X += foe1vx;
+		foe1Y += foe1vy;
+		foe2X += foe2vx;
+		foe2Y += foe2vy;
+
+
+		{
+			const int foe0Xold = foe0X;
+			const int foe0Yold = foe0Y;
+
+			foe0X = ClampScreenX(foe0X, foeWidth);
+
+			if (foe0X != foe0Xold)
+			{
+				foe0vx = -foe0vx;
+			}
+
+			foe0Y = ClampScreenY(foe0Y, foeHeight);
+			if (foe0Y != foe0Yold)
+			{
+				foe0vy = -foe0vy;
+			}
+		}
+
+		{
+			const int foe1Xold = foe1X;
+			const int foe1Yold = foe1Y;
+
+			foe1X = ClampScreenX(foe1X, foeWidth);
+
+			if (foe1X != foe1Xold)
+			{
+				foe1vx = -foe1vx;
+			}
+
+			foe1Y = ClampScreenY(foe1Y, foeHeight);
+			if (foe1Y != foe1Yold)
+			{
+				foe1vy = -foe1vy;
+			}
+		}
+
+		{
+			const int foe2Xold = foe2X;
+			const int foe2Yold = foe2Y;
+
+			foe2X = ClampScreenX(foe2X, foeWidth);
+
+			if (foe2X != foe2Xold)
+			{
+				foe2vx = -foe2vx;
+			}
+
+			foe2Y = ClampScreenY(foe2Y, foeHeight);
+			if (foe2Y != foe2Yold)
+			{
+				foe2vy = -foe2vy;
+			}
+		}
+
 		if (wnd.kbd.KeyIsPressed(VK_RIGHT))
 		{
 			dudeX += dudeSpeed;
@@ -67,6 +129,8 @@ void Game::UpdateModel()
 		{
 			dudeY -= dudeSpeed;
 		}
+
+
 
 		dudeX = ClampScreenX(dudeX, dudeWidth);
 		dudeY = ClampScreenY(dudeY, dudeHeight);

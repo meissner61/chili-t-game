@@ -1,2 +1,5 @@
-﻿  Game.cpp
+﻿  Foe.cpp
+  Game.cpp
+  Main.cpp
+  MainWindow.cpp
   Engine.vcxproj -> D:\chili\chili-t-game\x64\Debug\Engine.exe

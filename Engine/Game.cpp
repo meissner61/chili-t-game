@@ -31,12 +31,19 @@ Game::Game( MainWindow& wnd )
 	std::mt19937 rng( rd() );
 	std::uniform_int_distribution<int> xDist(0, 770);
 	std::uniform_int_distribution<int> yDist(0, 570);
-	foe0X = xDist(rng);
-	foe0Y = yDist(rng);
-	foe1X = xDist(rng);
-	foe1Y = yDist(rng);
-	foe2X = xDist(rng);
-	foe2Y = yDist(rng);
+	foe0.x = xDist(rng);
+	foe0.y = yDist(rng);
+	foe1.x = xDist(rng);
+	foe1.y = yDist(rng);
+	foe2.x = xDist(rng);
+	foe2.y = yDist(rng);
+
+	foe0.vx = -1;
+	foe0.vy = 1;
+	foe1.vx = 1;
+	foe1.vy = 1;
+	foe2.vx = -1;
+	foe2.vy = 1;
 }
 
 void Game::Go()
@@ -51,67 +58,10 @@ void Game::UpdateModel()
 {
 	if (isStarted)
 	{
-		foe0X += foe0vx;
-		foe0Y += foe0vy;
-		foe1X += foe1vx;
-		foe1Y += foe1vy;
-		foe2X += foe2vx;
-		foe2Y += foe2vy;
 
-
-		{
-			const int foe0Xold = foe0X;
-			const int foe0Yold = foe0Y;
-
-			foe0X = ClampScreenX(foe0X, foeWidth);
-
-			if (foe0X != foe0Xold)
-			{
-				foe0vx = -foe0vx;
-			}
-
-			foe0Y = ClampScreenY(foe0Y, foeHeight);
-			if (foe0Y != foe0Yold)
-			{
-				foe0vy = -foe0vy;
-			}
-		}
-
-		{
-			const int foe1Xold = foe1X;
-			const int foe1Yold = foe1Y;
-
-			foe1X = ClampScreenX(foe1X, foeWidth);
-
-			if (foe1X != foe1Xold)
-			{
-				foe1vx = -foe1vx;
-			}
-
-			foe1Y = ClampScreenY(foe1Y, foeHeight);
-			if (foe1Y != foe1Yold)
-			{
-				foe1vy = -foe1vy;
-			}
-		}
-
-		{
-			const int foe2Xold = foe2X;
-			const int foe2Yold = foe2Y;
-
-			foe2X = ClampScreenX(foe2X, foeWidth);
-
-			if (foe2X != foe2Xold)
-			{
-				foe2vx = -foe2vx;
-			}
-
-			foe2Y = ClampScreenY(foe2Y, foeHeight);
-			if (foe2Y != foe2Yold)
-			{
-				foe2vy = -foe2vy;
-			}
-		}
+		foe0.Update();
+		foe1.Update();
+		foe2.Update();
 
 		if (wnd.kbd.KeyIsPressed(VK_RIGHT))
 		{
@@ -135,19 +85,19 @@ void Game::UpdateModel()
 		dudeX = ClampScreenX(dudeX, dudeWidth);
 		dudeY = ClampScreenY(dudeY, dudeHeight);
 
-		if (IsColliding(dudeX, dudeY, dudeWidth, dudeHeight, foe0X, foe0Y, foeWidth, foeHeight))
+		if (IsColliding(dudeX, dudeY, dudeWidth, dudeHeight, foe0.x, foe0.y, foe0.width, foe0.height))
 		{
-			foe0IsEaten = true;
+			foe0.isEaten= true;
 		}
 
-		if (IsColliding(dudeX, dudeY, dudeWidth, dudeHeight, foe1X, foe1Y, foeWidth, foeHeight))
+		if (IsColliding(dudeX, dudeY, dudeWidth, dudeHeight, foe1.x, foe1.y, foe1.width, foe1.height))
 		{
-			foe1IsEaten = true;
+			foe1.isEaten= true;
 		}
 
-		if (IsColliding(dudeX, dudeY, dudeWidth, dudeHeight, foe2X, foe2Y, foeWidth, foeHeight))
+		if (IsColliding(dudeX, dudeY, dudeWidth, dudeHeight, foe2.x, foe2.y, foe2.width, foe2.height))
 		{
-			foe2IsEaten = true;
+			foe2.isEaten= true;
 		}
 	}
 
@@ -173,20 +123,20 @@ void Game::ComposeFrame()
 
 		DrawFace(dudeX, dudeY);
 
-		if (!foe0IsEaten)
+		if (!foe0.isEaten)
 		{
-			DrawFoe(foe0X, foe0Y);
+			DrawFoe(foe0.x, foe0.y);
 		}
-		if (!foe1IsEaten)
+		if (!foe1.isEaten)
 		{
-			DrawFoe(foe1X, foe1Y);
+			DrawFoe(foe1.x, foe1.y);
 		}
-		if (!foe2IsEaten)
+		if (!foe2.isEaten)
 		{
-			DrawFoe(foe2X, foe2Y);
+			DrawFoe(foe2.x, foe2.y);
 		}
 
-		if (foe0IsEaten && foe1IsEaten && foe2IsEaten)
+		if (foe0.isEaten&& foe1.isEaten&& foe2.isEaten)
 		{
 			DrawGameOver(358, 268);
 		}

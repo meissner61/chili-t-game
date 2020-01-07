@@ -23,6 +23,7 @@
 #include "Keyboard.h"
 #include "Mouse.h"
 #include "Graphics.h"
+#include "Foe.h"
 
 
 class Game
@@ -58,26 +59,13 @@ private:
 	int dudeHeight = 20;
 	int dudeSpeed = 4;
 
-	int foe0X = 300;
-	int foe0Y = 300;
-	int foe0vx = 1;
-	int foe0vy = -1;
-	bool foe0IsEaten = false;
+	Foe foe0;
+	Foe foe1;
+	Foe foe2;
 
-	int foe1X = 100;
-	int foe1vx = -1;
-	int foe1Y = 500;
-	int foe1vy = 1;
-	bool foe1IsEaten = false;
-
-	int foe2X = 600;
-	int foe2vx = 1;
-	int foe2Y = 400;
-	int foe2vy = 1;
-	bool foe2IsEaten = false;
-
-	int foeWidth = 24;
-	int foeHeight = 24;
+	int foeWidth=24;
+	int foeHeight=24;
+	
 
 	bool isStarted = false;
 

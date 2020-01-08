@@ -34,3 +34,18 @@ void Foe::Update()
 	}
 
 }
+
+void Foe::FoeCollisionCheck(int dudeX, int dudeY, int dudeHeight, int dudeWidth)
+{
+	const int dudeRight = dudeX + dudeWidth;
+	const int dudeBottom = dudeY + dudeHeight;
+	const int foeRight = x + width;
+	const int foeBottom = y + height;
+
+	if (dudeRight >= x && dudeX <= foeRight && dudeBottom >= y && dudeY <= foeBottom)
+	{
+		isEaten = true;
+	}
+		
+
+}

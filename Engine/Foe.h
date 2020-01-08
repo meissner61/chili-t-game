@@ -3,6 +3,7 @@ class Foe
 {
 public:
 	void Update();
+	void FoeCollisionCheck(int dudeX, int dudeY, int dudeHeight, int dudeWidth);
 	int x;
 	int y;
 	int vx;

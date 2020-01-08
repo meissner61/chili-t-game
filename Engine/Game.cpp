@@ -31,6 +31,10 @@ Game::Game( MainWindow& wnd )
 	std::mt19937 rng( rd() );
 	std::uniform_int_distribution<int> xDist(0, 770);
 	std::uniform_int_distribution<int> yDist(0, 570);
+
+	dude.x = xDist(rng);
+	dude.y = yDist(rng);
+
 	foe0.x = xDist(rng);
 	foe0.y = yDist(rng);
 	foe1.x = xDist(rng);
@@ -44,6 +48,7 @@ Game::Game( MainWindow& wnd )
 	foe1.vy = 1;
 	foe2.vx = -1;
 	foe2.vy = 1;
+
 }
 
 void Game::Go()
@@ -65,40 +70,26 @@ void Game::UpdateModel()
 
 		if (wnd.kbd.KeyIsPressed(VK_RIGHT))
 		{
-			dudeX += dudeSpeed;
+			dude.x += dude.speed;
 		}
 		if (wnd.kbd.KeyIsPressed(VK_LEFT))
 		{
-			dudeX -= dudeSpeed;
+			dude.x -= dude.speed;
 		}
 		if (wnd.kbd.KeyIsPressed(VK_DOWN))
 		{
-			dudeY += dudeSpeed;
+			dude.y += dude.speed;
 		}
 		if (wnd.kbd.KeyIsPressed(VK_UP))
 		{
-			dudeY -= dudeSpeed;
+			dude.y -= dude.speed;
 		}
 
+		dude.ScreenCollisionCheck();
 
-
-		dudeX = ClampScreenX(dudeX, dudeWidth);
-		dudeY = ClampScreenY(dudeY, dudeHeight);
-
-		if (IsColliding(dudeX, dudeY, dudeWidth, dudeHeight, foe0.x, foe0.y, foe0.width, foe0.height))
-		{
-			foe0.isEaten= true;
-		}
-
-		if (IsColliding(dudeX, dudeY, dudeWidth, dudeHeight, foe1.x, foe1.y, foe1.width, foe1.height))
-		{
-			foe1.isEaten= true;
-		}
-
-		if (IsColliding(dudeX, dudeY, dudeWidth, dudeHeight, foe2.x, foe2.y, foe2.width, foe2.height))
-		{
-			foe2.isEaten= true;
-		}
+		foe0.FoeCollisionCheck(dude.x, dude.y, dude.height, dude.width);
+		foe1.FoeCollisionCheck(dude.x, dude.y, dude.height, dude.width);
+		foe2.FoeCollisionCheck(dude.x, dude.y, dude.height, dude.width);
 	}
 
 	else
@@ -121,7 +112,7 @@ void Game::ComposeFrame()
 	else
 	{
 
-		DrawFace(dudeX, dudeY);
+		DrawFace(dude.x, dude.y);
 
 		if (!foe0.isEaten)
 		{

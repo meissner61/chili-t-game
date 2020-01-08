@@ -24,6 +24,7 @@
 #include "Mouse.h"
 #include "Graphics.h"
 #include "Foe.h"
+#include "Dude.h"
 
 
 class Game
@@ -36,6 +37,7 @@ public:
 private:
 	void ComposeFrame();
 	void UpdateModel();
+
 	/********************************/
 	/*  User Functions              */
 
@@ -52,23 +54,12 @@ private:
 	Graphics gfx;
 	/********************************/
 	/*  User Variables              */
-
-	int dudeX = 300;
-	int dudeY = 400;
-	int dudeWidth = 20;
-	int dudeHeight = 20;
-	int dudeSpeed = 4;
+	Dude dude;
 
 	Foe foe0;
 	Foe foe1;
 	Foe foe2;
-
-	int foeWidth=24;
-	int foeHeight=24;
 	
-
 	bool isStarted = false;
-
-	
 	/********************************/
 };

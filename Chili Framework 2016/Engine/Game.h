@@ -39,6 +39,8 @@ private:
 	void DrawGameOver(int x, int y);
 	void DrawDude(int x, int y);
 	void DrawPoo(int x, int y);
+	int pooBounceX(int x, int width, int& speed);
+	int pooBounceY(int y, int height, int& speed);
 	int ClampScreenX(int x, int width);
 	int ClampScreenY(int y, int height);
 	bool IsColliding(int x0, int y0, int width0, int height0
@@ -58,17 +60,26 @@ private:
 	int dudeX = 500;
 	int dudeY = 500;
 
+	int pooSpeed = 1;
+	int pooSpeedX = 1;
+	int pooSpeedY = 1;
 	int pooWidth = 24;
 	int pooHeight = 24;
 
-	int poo0X = 300;
-	int poo0Y = 150;
+	int pooSpeed0X = 1;
+	int pooSpeed0Y = 1;
+	int poo0X = 5;
+	int poo0Y = 300;
 	bool poo0isEaten = false;
 
+	int pooSpeed1X = 1;
+	int pooSpeed1Y = 1;
 	int poo1X = 100;
 	int poo1Y = 500;
 	bool poo1isEaten = false;
 
+	int pooSpeed2X = 1;
+	int pooSpeed2Y = 1;
 	int poo2X = 600;
 	int poo2Y = 400;
 	bool poo2isEaten = false;

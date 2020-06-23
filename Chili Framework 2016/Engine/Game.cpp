@@ -27,13 +27,13 @@ Game::Game(MainWindow & wnd)
     wnd(wnd),
     gfx(wnd)
 {
-	std::random_device rd;
+	std::random_device rd; //if generating random numbers throughout the game - NOT just in the beginning, make the RNG a member variable otherwise it will be creating it every single frame
 	std::mt19937 rng(rd());
 	std::uniform_int_distribution<int> xDist(0, 750);
 	std::uniform_int_distribution<int> yDist(0, 570);
 
-	poo0X = xDist(rng);
-	poo0Y = yDist(rng);
+	//poo0X = xDist(rng);
+	//poo0Y = yDist(rng);
 
 	poo1X = xDist(rng);
 	poo1Y = yDist(rng);
@@ -75,6 +75,74 @@ void Game::UpdateModel()
 
         dudeX = ClampScreenX(dudeX, dudeWidth);
         dudeY = ClampScreenY(dudeY, dudeHeight);
+
+//////////////////////////////////////////////////////////////////////////////////////
+		if (poo0X >= gfx.ScreenWidth - pooWidth - 1)
+		{
+			pooSpeed0X *= -1;
+		}
+		else if (poo0X <= 0)
+		{
+			pooSpeed0X *= -1;
+		}
+		else if (poo0Y >= gfx.ScreenHeight - pooHeight - 1)
+		{
+			pooSpeed0Y *= -1;
+		}
+
+		else if (poo0Y <= 0)
+		{
+			pooSpeed0Y *= -1;
+		}
+		//////////////////////////////////////////////////////////////////
+		if (poo1X >= gfx.ScreenWidth - pooWidth - 1)
+		{
+			pooSpeed1X *= -1;
+		}
+		else if (poo1X <= 0)
+		{
+			pooSpeed1X *= -1;
+		}
+		else if (poo1Y >= gfx.ScreenHeight - pooHeight - 1)
+		{
+			pooSpeed1Y *= -1;
+		}
+
+		else if (poo1Y <= 0)
+		{
+			pooSpeed1Y *= -1;
+		}
+		//////////////////////////////////////////////////////////
+		if (poo2X >= gfx.ScreenWidth - pooWidth - 1)
+		{
+			pooSpeed2X *= -1;
+		}
+		else if (poo2X <= 0)
+		{
+			pooSpeed2X *= -1;
+		}
+		else if (poo2Y >= gfx.ScreenHeight - pooHeight - 1)
+		{
+			pooSpeed2Y *= -1;
+		}
+
+		else if (poo2Y <= 0)
+		{
+			pooSpeed2Y *= -1;
+		}
+		//////////////////////////////////////////////////////////////
+		poo0X += pooSpeed0X;
+		poo0Y += pooSpeed0Y;
+
+		poo1X += pooSpeed1X;
+		poo1Y += pooSpeed1Y;
+
+		poo2X += pooSpeed2X;
+		poo2Y += pooSpeed2Y;
+
+
+		//poo0X += pooBounceX(poo0X, pooWidth, pooSpeed);
+		//poo0Y += pooBounceY(poo0Y, pooHeight, pooSpeed);
 
 
 
@@ -140,6 +208,43 @@ void Game::ComposeFrame()
     
     
 }
+
+int Game::pooBounceX(int x, int width, int& speed)
+{
+	bool flipBounce = false;
+
+	if (x <= 0)
+	{
+		return (speed *= -1);
+	}
+
+	else if (x >= gfx.ScreenWidth - width - 1)
+	{
+		return (speed *= -1);
+	}
+
+	else
+		return speed *= -1 ;
+		
+}
+
+int Game::pooBounceY(int y, int height, int& speed)
+{
+	bool flipBounce = false;
+
+	if (y <= 0)
+	{
+		return (speed *= -1);
+	}
+
+	else if (y >= gfx.ScreenHeight - height -1)
+	{
+		return (speed *= -1);
+	}
+	else
+		return (speed *= -1);
+}
+
 
 int Game::ClampScreenX(int x, int width)
 {
@@ -2836,3 +2941,4 @@ void Game::DrawPoo(int x, int y)
     gfx.PutPixel(6 + x, 23 + y, 51, 28, 0);
 
 }
+

@@ -76,6 +76,70 @@ void Game::UpdateModel()
         dudeX = ClampScreenX(dudeX, dudeWidth);
         dudeY = ClampScreenY(dudeY, dudeHeight);
 
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+=======
+>>>>>>> Stashed changes
+
+		poo0X += poo0VelocityX;
+		poo0Y += poo0VelocityY;
+
+		poo1X += poo1VelocityX;
+		poo1Y += poo1VelocityY;
+
+		poo2X += poo2VelocityX;
+		poo2Y += poo2VelocityY;
+
+		{
+			const int poo0Xold = poo0X;
+			const int poo0Yold = poo0Y;
+
+			poo0X = ClampScreenX(poo0X, pooWidth);
+			if (poo0X != poo0Xold)
+			{
+				poo0VelocityX = -poo0VelocityX;
+			}
+			poo0Y = ClampScreenY(poo0Y, pooHeight);
+			if (poo0Y != poo0Yold)
+			{
+				poo0VelocityY = -poo0VelocityY;
+			}
+		}
+////////////////////////////////////////////////////////////////////////////////////////
+		{
+			const int poo1Xold = poo1X;
+			const int poo1Yold = poo1Y;
+
+			poo1X = ClampScreenX(poo1X, pooWidth);
+			if (poo1X != poo1Xold)
+			{
+				poo1VelocityX = -poo1VelocityX;
+			}
+			poo1Y = ClampScreenY(poo1Y, pooHeight);
+			if (poo1Y != poo1Yold)
+			{
+				poo1VelocityY = -poo1VelocityY;
+			}
+		}
+///////////////////////////////////////////////////////////////////////////////////////////////
+		{
+			const int poo2Xold = poo2X;
+			const int poo2Yold = poo2Y;
+
+			poo2X = ClampScreenX(poo2X, pooWidth);
+			if (poo2X != poo2Xold)
+			{
+				poo2VelocityX = -poo2VelocityX;
+			}
+			poo2Y = ClampScreenY(poo2Y, pooHeight);
+			if (poo2Y != poo2Yold)
+			{
+				poo2VelocityY = -poo2VelocityY;
+			}
+		}
+
+>>>>>>> Stashed changes
 
 
         if (IsColliding(dudeX, dudeY, dudeWidth, dudeHeight, poo0X, poo0Y, pooWidth, pooHeight))

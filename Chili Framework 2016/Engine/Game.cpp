@@ -32,19 +32,19 @@ Game::Game(MainWindow & wnd)
 	std::uniform_int_distribution<int> xDist(0, 750);
 	std::uniform_int_distribution<int> yDist(0, 570);
 
-	//poo0.x = xDist(rng);
-	//poo0.y = yDist(rng);
-	//poo1.x = xDist(rng);
-	//poo1.y = yDist(rng);
-	//poo2.x = xDist(rng);
-	//poo2.y = yDist(rng);
+	poo0.x = xDist(rng);
+	poo0.y = yDist(rng);
+	poo1.x = xDist(rng);
+	poo1.y = yDist(rng);
+	poo2.x = xDist(rng);
+	poo2.y = yDist(rng);
 
-	poo0.x = 100;
-	poo0.y = 100;
-	poo1.x = 200;
-	poo1.y = 200;
-	poo2.x = 300;
-	poo2.y = 300;
+	//poo0.x = 100;
+	//poo0.y = 100;
+	//poo1.x = 200;
+	//poo1.y = 200;
+	//poo2.x = 300;
+	//poo2.y = 300;
 
 	poo0.xVel = 1;
 	poo0.yVel = -1;

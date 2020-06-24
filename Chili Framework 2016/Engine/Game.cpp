@@ -76,11 +76,6 @@ void Game::UpdateModel()
         dudeX = ClampScreenX(dudeX, dudeWidth);
         dudeY = ClampScreenY(dudeY, dudeHeight);
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> Stashed changes
 
 		poo0X += poo0VelocityX;
 		poo0Y += poo0VelocityY;
@@ -138,8 +133,6 @@ void Game::UpdateModel()
 				poo2VelocityY = -poo2VelocityY;
 			}
 		}
-
->>>>>>> Stashed changes
 
 
         if (IsColliding(dudeX, dudeY, dudeWidth, dudeHeight, poo0X, poo0Y, pooWidth, pooHeight))

@@ -1,2 +1,17 @@
 .vs
-Chili Framework 2016\.vs
+Chili Framework 2016/.vs
+Chili Framework 2016/Debug/Engine.exe
+Chili Framework 2016/Debug/Engine.ilk
+Chili Framework 2016/Debug/Engine.pdb
+Chili Framework 2016/Engine/Debug/Engine.log
+Chili Framework 2016/Engine/Debug/Engine.tlog/CL.command.1.tlog
+Chili Framework 2016/Engine/Debug/Engine.tlog/CL.read.1.tlog
+Chili Framework 2016/Engine/Debug/Engine.tlog/CL.write.1.tlog
+Chili Framework 2016/Engine/Debug/Engine.tlog/link.read.1.tlog
+Chili Framework 2016/Engine/Debug/Engine.tlog/link.write.1.tlog
+Chili Framework 2016/Engine/Debug/Game.obj
+Chili Framework 2016/Engine/Debug/Main.obj
+Chili Framework 2016/Engine/Debug/MainWindow.obj
+Chili Framework 2016/Engine/Debug/vc141.idb
+Chili Framework 2016/Engine/Debug/vc141.pdb
+

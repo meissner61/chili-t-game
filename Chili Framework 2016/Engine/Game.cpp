@@ -32,14 +32,19 @@ Game::Game(MainWindow & wnd)
 	std::uniform_int_distribution<int> xDist(0, 750);
 	std::uniform_int_distribution<int> yDist(0, 570);
 
-	poo0X = xDist(rng);
-	poo0Y = yDist(rng);
+	poo0.x = xDist(rng);
+	poo0.y = yDist(rng);
+	poo1.x = xDist(rng);
+	poo1.y = yDist(rng);
+	poo2.x = xDist(rng);
+	poo2.y = yDist(rng);
 
-	poo1X = xDist(rng);
-	poo1Y = yDist(rng);
-
-	poo2X = xDist(rng);
-	poo2Y = yDist(rng);
+	poo0.xVel = 1;
+	poo0.yVel = -1;
+	poo1.xVel = -1;
+	poo1.yVel = 1;
+	poo2.xVel = 1;
+	poo2.yVel = -1;
 }
 
 void Game::Go()
@@ -77,77 +82,24 @@ void Game::UpdateModel()
         dudeY = ClampScreenY(dudeY, dudeHeight);
 
 
-		poo0X += poo0VelocityX;
-		poo0Y += poo0VelocityY;
-
-		poo1X += poo1VelocityX;
-		poo1Y += poo1VelocityY;
-
-		poo2X += poo2VelocityX;
-		poo2Y += poo2VelocityY;
-
-		{
-			const int poo0Xold = poo0X;
-			const int poo0Yold = poo0Y;
-
-			poo0X = ClampScreenX(poo0X, pooWidth);
-			if (poo0X != poo0Xold)
-			{
-				poo0VelocityX = -poo0VelocityX;
-			}
-			poo0Y = ClampScreenY(poo0Y, pooHeight);
-			if (poo0Y != poo0Yold)
-			{
-				poo0VelocityY = -poo0VelocityY;
-			}
-		}
-////////////////////////////////////////////////////////////////////////////////////////
-		{
-			const int poo1Xold = poo1X;
-			const int poo1Yold = poo1Y;
-
-			poo1X = ClampScreenX(poo1X, pooWidth);
-			if (poo1X != poo1Xold)
-			{
-				poo1VelocityX = -poo1VelocityX;
-			}
-			poo1Y = ClampScreenY(poo1Y, pooHeight);
-			if (poo1Y != poo1Yold)
-			{
-				poo1VelocityY = -poo1VelocityY;
-			}
-		}
-///////////////////////////////////////////////////////////////////////////////////////////////
-		{
-			const int poo2Xold = poo2X;
-			const int poo2Yold = poo2Y;
-
-			poo2X = ClampScreenX(poo2X, pooWidth);
-			if (poo2X != poo2Xold)
-			{
-				poo2VelocityX = -poo2VelocityX;
-			}
-			poo2Y = ClampScreenY(poo2Y, pooHeight);
-			if (poo2Y != poo2Yold)
-			{
-				poo2VelocityY = -poo2VelocityY;
-			}
-		}
+		poo0.Update();
+		poo1.Update();
+		poo2.Update();
 
 
-        if (IsColliding(dudeX, dudeY, dudeWidth, dudeHeight, poo0X, poo0Y, pooWidth, pooHeight))
+        if (IsColliding(dudeX, dudeY, dudeWidth, dudeHeight, poo0.x, poo0.y, Poo::width, Poo::height))
         {
-            poo0isEaten = true;
+			poo0.isEaten = true;
         }
 
-        if (IsColliding(dudeX, dudeY, dudeWidth, dudeHeight, poo1X, poo1Y, pooWidth, pooHeight))
+        if (IsColliding(dudeX, dudeY, dudeWidth, dudeHeight, poo1.x, poo1.y, Poo::width, Poo::height))
         {
-            poo1isEaten = true;
+			poo1.isEaten = true;
         }
 
-        if (IsColliding(dudeX, dudeY, dudeWidth, dudeHeight, poo2X, poo2Y, pooWidth, pooHeight))
+        if (IsColliding(dudeX, dudeY, dudeWidth, dudeHeight, poo2.x, poo2.y, Poo::width, Poo::height))
         {
-            poo2isEaten = true;
+			poo2.isEaten = true;
         }
     }
 
@@ -166,7 +118,7 @@ void Game::ComposeFrame()
 {
     DrawDude(dudeX, dudeY);
 
-    if (poo0isEaten && poo1isEaten && poo2isEaten)
+    if (poo0.isEaten && poo1.isEaten && poo2.isEaten)
     {
 
         DrawGameOver(358, 256);
@@ -175,19 +127,19 @@ void Game::ComposeFrame()
 
     else
     {
-        if (!poo0isEaten)
+        if (!poo0.isEaten)
         {
-            DrawPoo(poo0X, poo0Y);
+            DrawPoo(poo0.x, poo0.y);
         }
 
-        if (!poo1isEaten)
+        if (!poo1.isEaten)
         {
-            DrawPoo(poo1X, poo1Y);
+            DrawPoo(poo1.x, poo1.y);
         }
 
-        if (!poo2isEaten)
+        if (!poo2.isEaten)
         {
-            DrawPoo(poo2X, poo2Y);
+            DrawPoo(poo2.x, poo2.y);
 
         }
     }

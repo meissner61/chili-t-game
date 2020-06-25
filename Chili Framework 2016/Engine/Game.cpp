@@ -32,6 +32,9 @@ Game::Game(MainWindow & wnd)
 	std::uniform_int_distribution<int> xDist(0, 750);
 	std::uniform_int_distribution<int> yDist(0, 570);
 
+	dude0.x = xDist(rng);
+	dude0.y = yDist(rng);
+
 	poo0.x = xDist(rng);
 	poo0.y = yDist(rng);
 	poo1.x = xDist(rng);
@@ -68,25 +71,24 @@ void Game::UpdateModel()
     {
         if (wnd.kbd.KeyIsPressed(VK_RIGHT))
         {
-            dudeX += dudeSpeed;
+            dude0.x += dude0.speed;
         }
         if (wnd.kbd.KeyIsPressed(VK_LEFT))
         {
-            dudeX -= dudeSpeed;
+            dude0.x -= dude0.speed;
         }
 
         if (wnd.kbd.KeyIsPressed(VK_DOWN))
         {
-            dudeY += dudeSpeed;
+            dude0.y += dude0.speed;
         }
 
         if (wnd.kbd.KeyIsPressed(VK_UP))
         {
-            dudeY -= dudeSpeed;
+            dude0.y -= dude0.speed;
         }
 
-        dudeX = ClampScreenX(dudeX, dudeWidth);
-        dudeY = ClampScreenY(dudeY, dudeHeight);
+		dude0.Update();
 
 
 		poo0.Update();
@@ -94,17 +96,17 @@ void Game::UpdateModel()
 		poo2.Update();
 
 
-        if (IsColliding(dudeX, dudeY, dudeWidth, dudeHeight, poo0.x, poo0.y, Poo::width, Poo::height))
+        if (IsColliding(dude0.x, dude0.y, Dude::width, Dude::height, poo0.x, poo0.y, Poo::width, Poo::height))
         {
 			poo0.isEaten = true;
         }
 
-        if (IsColliding(dudeX, dudeY, dudeWidth, dudeHeight, poo1.x, poo1.y, Poo::width, Poo::height))
+        if (IsColliding(dude0.x, dude0.y, Dude::width, Dude::height, poo1.x, poo1.y, Poo::width, Poo::height))
         {
 			poo1.isEaten = true;
         }
 
-        if (IsColliding(dudeX, dudeY, dudeWidth, dudeHeight, poo2.x, poo2.y, Poo::width, Poo::height))
+        if (IsColliding(dude0.x, dude0.y, Dude::width, Dude::height, poo2.x, poo2.y, Poo::width, Poo::height))
         {
 			poo2.isEaten = true;
         }
@@ -123,7 +125,7 @@ void Game::UpdateModel()
 
 void Game::ComposeFrame()
 {
-    DrawDude(dudeX, dudeY);
+    DrawDude(dude0.x, dude0.y);
 
     if (poo0.isEaten && poo1.isEaten && poo2.isEaten)
     {

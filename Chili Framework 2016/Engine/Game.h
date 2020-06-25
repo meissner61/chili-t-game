@@ -24,6 +24,7 @@
 #include "Mouse.h"
 #include "Graphics.h"
 #include "Poo.h"
+#include "Dude.h"
 
 class Game
 {
@@ -53,11 +54,13 @@ private:
 	/*  User Variables              */
 	bool isStarted = true;
 
-	int dudeSpeed = 5;
-	int dudeWidth = 20;
-	int dudeHeight = 20;
-	int dudeX = 500;
-	int dudeY = 500;
+	//int dudeSpeed = 5;
+	//int dudeWidth = 20;
+	//int dudeHeight = 20;
+	//int dudeX = 500;
+	//int dudeY = 500;
+
+	Dude dude0;
 
 	Poo poo0;
 	Poo poo1;

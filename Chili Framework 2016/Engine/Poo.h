@@ -4,7 +4,7 @@ class Poo
 public:
 	static constexpr int width = 24;
 	static constexpr int height = 24;
-	int pooSpeed;
+	int speed;
 
 	int xVel; //velocity
 	int yVel;

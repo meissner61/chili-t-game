@@ -96,20 +96,9 @@ void Game::UpdateModel()
 		poo2.Update();
 
 
-        if (IsColliding(dude0.x, dude0.y, Dude::width, Dude::height, poo0.x, poo0.y, Poo::width, Poo::height))
-        {
-			poo0.isEaten = true;
-        }
-
-        if (IsColliding(dude0.x, dude0.y, Dude::width, Dude::height, poo1.x, poo1.y, Poo::width, Poo::height))
-        {
-			poo1.isEaten = true;
-        }
-
-        if (IsColliding(dude0.x, dude0.y, Dude::width, Dude::height, poo2.x, poo2.y, Poo::width, Poo::height))
-        {
-			poo2.isEaten = true;
-        }
+		poo0.ProcessConsumption(dude0.x, dude0.y, dude0.width, dude0.height);
+		poo1.ProcessConsumption(dude0.x, dude0.y, dude0.width, dude0.height);
+		poo2.ProcessConsumption(dude0.x, dude0.y, dude0.width, dude0.height);
     }
 
     else
@@ -159,36 +148,7 @@ void Game::ComposeFrame()
     
 }
 
-int Game::ClampScreenX(int x, int width)
-{
-    if (x <= 0)
-    {
-        return 0;
-    }
 
-    else if (x >= gfx.ScreenWidth - width)
-    {
-        return gfx.ScreenWidth - width - 1;
-    }
-
-    else
-        return x;
-}
-
-int Game::ClampScreenY(int y, int height)
-{
-    if (y <= 0)
-    {
-        return 1;
-    }
-
-    else if (y >= gfx.ScreenHeight - height)
-    {
-        return gfx.ScreenHeight - height - 1;
-    }
-
-    else return y;
-}
 
 //x0 is the starting position -> width is the ending position of the rectangle, same for y0 and height   X0,Y0--------(width)
 

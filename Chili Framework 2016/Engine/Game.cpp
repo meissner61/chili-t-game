@@ -89,12 +89,10 @@ void Game::UpdateModel()
         }
 
 		dude0.Update();
-
-
+		
 		poo0.Update();
 		poo1.Update();
 		poo2.Update();
-
 
 		poo0.ProcessConsumption(dude0.x, dude0.y, dude0.width, dude0.height);
 		poo1.ProcessConsumption(dude0.x, dude0.y, dude0.width, dude0.height);
@@ -127,17 +125,17 @@ void Game::ComposeFrame()
     {
         if (!poo0.isEaten)
         {
-            DrawPoo(poo0.x, poo0.y);
+            poo0.Draw(gfx);
         }
 
         if (!poo1.isEaten)
         {
-            DrawPoo(poo1.x, poo1.y);
+			poo1.Draw(gfx);
         }
 
         if (!poo2.isEaten)
         {
-            DrawPoo(poo2.x, poo2.y);
+			poo2.Draw(gfx);
 
         }
     }
